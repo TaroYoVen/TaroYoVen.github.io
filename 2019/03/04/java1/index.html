@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content>
+    <meta name="author" content="TaroYoVen">
+    <meta name="keywords" content>
+    <title>TaroYoVen&#39;s Blog</title>
+    <link rel="stylesheet" href="/css/Material_Icons.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    
+        <link rel="stylesheet" href="/css/post.css">
+        
+            <link rel="stylesheet" href="/css/Prettify/tomorrow-night-eighties.min.css">
+        
+    
+</head>
+
+<body class=" sidebar-collapse">
+<nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="/">
+                TaroYoVen&#39;s Blog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" href="/archives/">
+                                    archives
+                                </a>
+                            </li>
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about/">
+                                    about
+                                </a>
+                            </li>
+                        
+                    
+                    
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" rel="tooltip" title data-placement="bottom" href="https://github.com/" target="_blank" data-original-title="See me here">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                            </li>
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" rel="tooltip" title data-placement="bottom" href="https://twitter.com/" target="_blank" data-original-title="See me here">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                        
+                    
+                </ul>
+            </div>
+    </div>
+</nav>
+    
+  <div class="page-header header-filter" data-parallax="false" style="background-image: url('/img/post-banner.jpg'); height: 70vh;">
+    
+      <div class="container">
+        <h1 class="title text-center post_title"></h1>
+        <p class="text-center"><b>Monday, March 4th 2019, 11:45 pm</b></p>
+      </div>
+    
+  </div>
+
+  
+  
+  
+    <div class="row" style="margin: 0 0 0; z-index: 999;">
+  <div class="col-md-8 offset-md-1">
+    <div class="main main-raised">
+      <div class="container">
+        <div class="section">
+          <div class="post_content">
+              <h2 id="Java面向对象的三大特性：继承-封装-多态"><a href="#Java面向对象的三大特性：继承-封装-多态" class="headerlink" title="Java面向对象的三大特性：继承 封装 多态"></a>Java面向对象的三大特性：继承 封装 多态</h2><h3 id="一、继承"><a href="#一、继承" class="headerlink" title="一、继承"></a>一、继承</h3><p>Java中的继承只能单继承，但是可以通过内部类继承其他类来实现多继承。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package test;  </span><br><span class="line">/** </span><br><span class="line"> * class one: Class1 </span><br><span class="line"> * @author TJ </span><br><span class="line"> */  </span><br><span class="line">public class Class1 &#123;  </span><br><span class="line">    /** </span><br><span class="line">     * method: getName </span><br><span class="line">     * @return name </span><br><span class="line">     */  </span><br><span class="line">    public String getName() &#123;  </span><br><span class="line">        return &quot;Luck&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package test;  </span><br><span class="line">/** </span><br><span class="line"> * class two: Class2 </span><br><span class="line"> * @author TJ </span><br><span class="line"> */  </span><br><span class="line">public class Class2 &#123;  </span><br><span class="line">    /** </span><br><span class="line">     * method: getAge </span><br><span class="line">     * @return age </span><br><span class="line">     */  </span><br><span class="line">    public int getAge() &#123;  </span><br><span class="line">        return 25;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package test;  </span><br><span class="line">public class MainClass &#123;  </span><br><span class="line">    /** </span><br><span class="line">     * inner class one: Test1 extends Class1 </span><br><span class="line">     * @author TJ </span><br><span class="line">     */  </span><br><span class="line">    public static class Test1 extends Class1 &#123;  </span><br><span class="line">        @Override  </span><br><span class="line">        public String getName() &#123;  </span><br><span class="line">            return super.getName();  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    /** </span><br><span class="line">     * inner class two: Test2 extends Class2 </span><br><span class="line">     * @author TJ </span><br><span class="line">     */  </span><br><span class="line">    public static class Test2 extends Class2 &#123;  </span><br><span class="line">        @Override  </span><br><span class="line">        public int getAge() &#123;  </span><br><span class="line">            return super.getAge();  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    /** </span><br><span class="line">     * method: showName </span><br><span class="line">     * @return name </span><br><span class="line">     */  </span><br><span class="line">    public String showName() &#123;  </span><br><span class="line">        return new Test1().getName();  </span><br><span class="line">    &#125;  </span><br><span class="line">    /** </span><br><span class="line">     * method: showAge </span><br><span class="line">     * @return age </span><br><span class="line">     */  </span><br><span class="line">    public int showAge() &#123;  </span><br><span class="line">        return new Test2().getAge();  </span><br><span class="line">    &#125;  </span><br><span class="line">    public static void main(String args[]) &#123;  </span><br><span class="line">        MainClass example = new MainClass();  </span><br><span class="line">        System.out.println(&quot;name:&quot; + example.showName());  </span><br><span class="line">        System.out.println(&quot;age:&quot; + example.showAge());  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>二、封装</p>
+<p>封装主要是因为Java有访问权限的控制。public &gt; protected &gt; package = default &gt; private。封装可以保护类中的信息，只提供想要被外界访问的信息。</p>
+<p>类的访问范围：</p>
+<blockquote>
+<p>A. public    包内、包外，所有类中可见<br>B. protected    包内所有类可见，包外有继承关系的子类可见<br>(子类对象可调用)<br>C. (default)表示默认，不仅本类访问，而且是同包可。<br>D. private    仅在同一类中可见 </p>
+</blockquote>
+<hr>
+<p>三、多态</p>
+<p>多态一般可以分为两种，一个是重写overwrite，一个是重载override</p>
+<p>重写是由于继承关系中的子类有一个和父类同名同参数的方法，会覆盖掉父类的方法。重载是因为一个同名方法可以传入多个参数组合。</p>
+<p>注意，同名方法如果参数相同，即使返回值不同也是不能同时存在的，编译会出错。</p>
+<p>从jvm实现的角度来看，重写又叫运行时多态，编译时看不出子类调用的是哪个方法，但是运行时操作数栈会先根据子类的引用去子类的类信息中查找方法，找不到的话再到父类的类信息中查找方法。<br>而重载则是编译时多态，因为编译期就可以确定传入的参数组合，决定调用的具体方法是哪一个了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">        Son son = new Son();</span><br><span class="line">        //首先先明确一点，转型指的是左侧引用的改变。</span><br><span class="line">        //father引用类型是Father，指向Son实例，就是向上转型，既可以使用子类的方法，也可以使用父类的方法。</span><br><span class="line">        //向上转型,此时运行father的方法</span><br><span class="line">        Father father = son;</span><br><span class="line">        father.smoke();</span><br><span class="line">        //不能使用子类独有的方法。</span><br><span class="line">        // father.play();编译会报错</span><br><span class="line">        father.drive();</span><br><span class="line">        //Son类型的引用指向Father的实例，所以是向下转型，不能使用子类非重写的方法，可以使用父类的方法。</span><br><span class="line">        //向下转型，此时运行了son的方法</span><br><span class="line">        Son son1 = (Son) father;</span><br><span class="line">        //转型后就是一个正常的Son实例</span><br><span class="line">        son1.play();</span><br><span class="line">        son1.drive();</span><br><span class="line">        son1.smoke();</span><br></pre></td></tr></table></figure>
+<pre><code>    //因为向下转型之前必须先经历向上转型。
+
+    //在向下转型过程中，分为两种情况：
+    //
+    // 情况一：如果父类引用的对象如果引用的是指向的子类对象，
+    //  那么在向下转型的过程中是安全的。也就是编译是不会出错误的。
+        //因为运行期Son实例确实有这些方法
+        Father f1 = new Son();
+        Son s1 = (Son) f1;
+        s1.smoke();
+        s1.drive();
+        s1.play();
+    // 情况二：如果父类引用的对象是父类本身，那么在向下转型的过程中是不安全的，编译不会出错，
+    //但是运行时会出现java.lang.ClassCastException错误。它可以使用instanceof来避免出错此类错误。
+    //因为运行期Father实例并没有这些方法。
+        Father f2 = new Father();
+        Son s2 = (Son) f2;
+        s2.drive();
+        s2.smoke();
+        s2.play();
+    //向下转型和向上转型的应用，有些人觉得这个操作没意义，其实可以用于方法参数中的类型聚合，然后具体操作再进行分解。
+    //比如add方法用List引用类型作为参数传入，传入具体类时经历了向下转型
+    add(new LinkedList());
+    add(new ArrayList());
+
+    //总结
+    //向上转型和向下转型都是针对引用的转型，是编译期进行的转型，根据引用类型来判断使用哪个方法
+    //并且在传入方法时会自动进行转型（有需要的话）。运行期将引用指向实例，如果是不安全的转型则会报错。
+    //若安全则继续执行方法。
+
+}
+public static void add(List list) {
+    System.out.println(list);
+    //在操作具体集合时又经历了向上转型
+// ArrayList arr = (ArrayList) list;
+// LinkedList link = (LinkedList) list;
+}
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">	// LinkedList link = (LinkedList) list;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+          </div>
+          <br><br>
+          <div>
+              <p>
+                      
+              </p>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+  <!-- TOC -->
+  
+  <div id="toc">
+    <br>
+    <p class="toc-title">目录：</p>
+    <div id="tocbot"></div>
+  </div>
+
+
+</div>
+
+
+<br>
+<!-- Comments -->
+<div class="comments" id="comments">
+
+    
+    <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script>               
+        var disqus_shortname = '';
+        var disqus_config = function () {
+            this.page.url = 'http://yoursite.com/2019/03/04/java1/'; 
+            this.page.identifier = '/2019/03/04/java1/';
+        };
+        (function() { 
+            var d = document, s = d.createElement('script');
+            s.type = 'text/javascript';
+            s.src = '//'+disqus_shortname+'.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                                
+</div>
+
+</div>
+  
+
+<footer class="footer footer-default">
+        <div class="container">
+          <div class="float-left" style="padding: 15px 0;">
+              <b>多读书，多看报，少吃零食，多睡觉！</b>
+          </div>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>&nbsp;<a href="https://hexo.io/zh-cn/" target="_blank">CYF</a>&nbsp;<i class="material-icons">favorite_border</i>
+            <a href="https://github.com/invom/Material-T" target="_blank">HSD</a>
+          </div>
+        </div>
+</footer>
+      <!--   Core JS Files   -->
+      <script src="/js/core/jquery.min.js?v=3.2.1"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/core/popper.min.js"></script>
+      <script src="/js/core/bootstrap-material-design.min.js"></script>
+      <script src="/js/plugins/moment.min.js"></script>
+      <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+      <script src="/js/material-kit.min.js?v=2.0.5"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+        <script src="/js/post.js"></script>
+        <script src="/js/plugins/prettify.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('pre').addClass('prettyprint linenums');
+                prettyPrint();
+            })
+        </script>
+      
+
+</body>
+</html>
