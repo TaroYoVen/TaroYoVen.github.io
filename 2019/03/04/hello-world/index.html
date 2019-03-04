@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content>
+    <meta name="author" content="John Doe">
+    <meta name="keywords" content>
+    <title>如何在Linux上安装Nginx ~ Hexo</title>
+    <link rel="stylesheet" href="/css/Material_Icons.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    
+        <link rel="stylesheet" href="/css/post.css">
+        
+            <link rel="stylesheet" href="/css/Prettify/tomorrow-night-eighties.min.css">
+        
+    
+</head>
+
+<body class=" sidebar-collapse">
+<nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="/">
+                Hexo</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" href="/archives/">
+                                    archives
+                                </a>
+                            </li>
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about/">
+                                    about
+                                </a>
+                            </li>
+                        
+                    
+                    
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" rel="tooltip" title data-placement="bottom" href="https://github.com/" target="_blank" data-original-title="See me here">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                            </li>
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" rel="tooltip" title data-placement="bottom" href="https://twitter.com/" target="_blank" data-original-title="See me here">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                        
+                    
+                </ul>
+            </div>
+    </div>
+</nav>
+    
+  <div class="page-header header-filter" data-parallax="false" style="background-image: url('/img/post-banner.jpg'); height: 70vh;">
+    
+      <div class="container">
+        <h1 class="title text-center post_title">如何在Linux上安装Nginx</h1>
+        <p class="text-center"><b>Monday, March 4th 2019, 6:44 pm</b></p>
+      </div>
+    
+  </div>
+
+  
+  
+  
+    <div class="row" style="margin: 0 0 0; z-index: 999;">
+  <div class="col-md-8 offset-md-1">
+    <div class="main main-raised">
+      <div class="container">
+        <div class="section">
+          <div class="post_content">
+              <h3 id="前提：安装好虚拟机和linux系统"><a href="#前提：安装好虚拟机和linux系统" class="headerlink" title="前提：安装好虚拟机和linux系统"></a><strong>前提：安装好虚拟机和linux系统</strong></h3><p>1.下载一个VMware Workstation Pro12<br>    <a href="http://down-www.newasp.net/big/vmware12_cn_reg.rar" target="_blank" rel="noopener">http://down-www.newasp.net/big/vmware12_cn_reg.rar</a><br>    序列号： 5A02H-AU243-TZJ49-GTC7K-3C61N</p>
+<p>2.下载linux镜像<br><a href="http://mirrors.163.com/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-bin-DVD2.iso" target="_blank" rel="noopener">http://mirrors.163.com/centos/6.9/isos/x86_64/CentOS-6.9-x86_64-bin-DVD2.iso</a></p>
+<hr>
+<h3 id="1-nginx安装环境"><a href="#1-nginx安装环境" class="headerlink" title="1.nginx安装环境"></a><strong>1.nginx安装环境</strong></h3><blockquote>
+<p>nginx是C语言开发，建议在linux上运行，本教程使用Centos6.5作为安装环境。</p>
+</blockquote>
+<hr>
+<h4 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h4><p>安装nginx需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc</p>
+<blockquote>
+<p>yum install gcc-c++ </p>
+</blockquote>
+<hr>
+<h4 id="PCRE"><a href="#PCRE" class="headerlink" title="PCRE"></a>PCRE</h4><p>PCRE(Perl Compatible Regular Expressions)是一个Perl库，包括 perl 兼容的正则表达式库。nginx的http模块使用pcre来解析正则表达式，所以需要在linux上安装pcre库。</p>
+<blockquote>
+<p>yum install -y pcre pcre-devel</p>
+</blockquote>
+<p>注：pcre-devel是使用pcre开发的一个二次开发库。nginx也需要此库。</p>
+<hr>
+<h4 id="zlib"><a href="#zlib" class="headerlink" title="zlib"></a>zlib</h4><p>zlib库提供了很多种压缩和解压缩的方式，nginx使用zlib对http包的内容进行gzip，所以需要在linux上安装zlib库。</p>
+<blockquote>
+<p>yum install -y zlib zlib-devel</p>
+</blockquote>
+<hr>
+<h4 id="openssl"><a href="#openssl" class="headerlink" title="openssl"></a>openssl</h4><p>OpenSSL 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用。</p>
+<p>nginx不仅支持http协议，还支持https（即在ssl协议上传输http），所以需要在linux安装openssl库。</p>
+<blockquote>
+<p>yum install -y openssl openssl-devel</p>
+</blockquote>
+<hr>
+<h3 id="2-编译安装"><a href="#2-编译安装" class="headerlink" title="2.编译安装"></a><strong>2.编译安装</strong></h3><blockquote>
+<p>将nginx-1.8.0.tar.gz拷贝至linux服务器。</p>
+</blockquote>
+<p>注：关于如何拷贝，如果你安装的是和我一样是桌面版的系统的话，可以直接拖拽进虚拟机。当然有些不能直接拖拽。楼主很早前是通过将文件上传到QQ邮箱的文件中转站，再在虚拟机访问邮箱下载下来的。后来直接用FileZ Client上传到虚拟机上的。</p>
+<blockquote>
+<p>解压：<br>tar -zxvf nginx-1.8.0.tar.gz<br>cd nginx-1.8.0</p>
+</blockquote>
+<hr>
+<h4 id="configure"><a href="#configure" class="headerlink" title="configure"></a>configure</h4><p>查询详细参数</p>
+<blockquote>
+<p>./configure –help</p>
+</blockquote>
+<p>./configure \<br>–prefix=/usr/local/nginx \<br>–pid-path=/var/run/nginx/nginx.pid \<br>–lock-path=/var/lock/nginx.lock \<br>–error-log-path=/var/log/nginx/error.log \<br>–http-log-path=/var/log/nginx/access.log \<br>–with-http_gzip_static_module \<br>–http-client-body-temp-path=/var/temp/nginx/client \<br>–http-proxy-temp-path=/var/temp/nginx/proxy \<br>–http-fastcgi-temp-path=/var/temp/nginx/fastcgi \<br>–http-uwsgi-temp-path=/var/temp/nginx/uwsgi \<br>–http-scgi-temp-path=/var/temp/nginx/scgi</p>
+<p>注：上边将临时文件目录指定为/var/temp/nginx，需要在/var下创建temp及nginx目录</p>
+<hr>
+<h4 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h4><blockquote>
+<p>make<br>make  install</p>
+</blockquote>
+<p>安装成功查看安装目录 ：<br><img src="http://img.blog.csdn.net/20170726213753791?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGFyb1lvVmVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<hr>
+<h3 id="3-启动nginx"><a href="#3-启动nginx" class="headerlink" title="3.启动nginx"></a><strong>3.启动nginx</strong></h3><blockquote>
+<p>cd /usr/local/nginx/sbin/<br>./nginx</p>
+</blockquote>
+<p>查询nginx进程：</p>
+<p><img src="http://img.blog.csdn.net/20170726213951734?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGFyb1lvVmVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>15098是nginx主进程的进程id，15099是nginx工作进程的进程id</p>
+<p>注：执行./nginx启动nginx，这里可以-c指定加载的nginx配置文件，如下：<br>./nginx -c /usr/local/nginx/conf/nginx.conf<br>如果不指定-c，nginx在启动时默认加载conf/nginx.conf文件，此文件的地址也可以在编译安装nginx时指定./configure的参数（–conf-path= 指向配置文件（nginx.conf））</p>
+<hr>
+<h3 id="4-停止nginx"><a href="#4-停止nginx" class="headerlink" title="4.停止nginx"></a><strong>4.停止nginx</strong></h3><h4 id="方式1，快速停止："><a href="#方式1，快速停止：" class="headerlink" title="方式1，快速停止："></a>方式1，快速停止：</h4><blockquote>
+<p>cd /usr/local/nginx/sbin<br>./nginx -s stop<br>此方式相当于先查出nginx进程id再使用kill命令强制杀掉进程。</p>
+</blockquote>
+<hr>
+<h4 id="方式2，完整停止-建议使用-："><a href="#方式2，完整停止-建议使用-：" class="headerlink" title="方式2，完整停止(建议使用)："></a>方式2，完整停止(建议使用)：</h4><blockquote>
+<p>cd /usr/local/nginx/sbin<br>./nginx -s quit<br>此方式停止步骤是待nginx进程处理任务完毕进行停止。</p>
+</blockquote>
+<hr>
+<h3 id="5-重启nginx"><a href="#5-重启nginx" class="headerlink" title="5.重启nginx"></a><strong>5.重启nginx</strong></h3><h4 id="方式1，先停止再启动（建议使用）："><a href="#方式1，先停止再启动（建议使用）：" class="headerlink" title="方式1，先停止再启动（建议使用）："></a>方式1，先停止再启动（建议使用）：</h4><blockquote>
+<p>对nginx进行重启相当于先停止nginx再启动nginx，即先执行停止命令再执行启动命令。<br>如下：<br>./nginx -s quit<br>./nginx</p>
+</blockquote>
+<hr>
+<h4 id="方式2，重新加载配置文件："><a href="#方式2，重新加载配置文件：" class="headerlink" title="方式2，重新加载配置文件："></a>方式2，重新加载配置文件：</h4><blockquote>
+<p>当nginx的配置文件nginx.conf修改后，要想让配置生效需要重启nginx，使用-s reload不用先停止nginx再启动nginx即可将配置信息在nginx中生效，如下：<br>./nginx -s reload</p>
+</blockquote>
+<hr>
+<h3 id="6-测试"><a href="#6-测试" class="headerlink" title="6.测试"></a><strong>6.测试</strong></h3><p>nginx安装成功，启动nginx，即可访问虚拟机上的nginx：</p>
+<p><img src="http://img.blog.csdn.net/20170726214726185?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGFyb1lvVmVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<hr>
+<h3 id="7-开机自启动nginx"><a href="#7-开机自启动nginx" class="headerlink" title="7.开机自启动nginx"></a><strong>7.开机自启动nginx</strong></h3><h4 id="编写shell脚本"><a href="#编写shell脚本" class="headerlink" title="编写shell脚本"></a>编写shell脚本</h4><blockquote>
+<p>这里使用的是编写shell脚本的方式来处理<br>vi /etc/init.d/nginx  (输入下面的代码)</p>
+</blockquote>
+<blockquote>
+<p>:wq  保存并退出</p>
+</blockquote>
+<hr>
+<h4 id="7-2设置文件的访问权限"><a href="#7-2设置文件的访问权限" class="headerlink" title="7.2设置文件的访问权限"></a>7.2设置文件的访问权限</h4><blockquote>
+<p>chmod a+x /etc/init.d/nginx   (a+x ==&gt; all user can execute  所有用户可执行)</p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20170726215120724?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvVGFyb1lvVmVu/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>如果修改了nginx的配置文件nginx.conf，也可以使用上面的命令重新加载新的配置文件并运行，可以将此命令加入到rc.local文件中，这样开机的时候nginx就默认启动了</p>
+<hr>
+<h4 id="7-3加入到rc-local文件中"><a href="#7-3加入到rc-local文件中" class="headerlink" title="7.3加入到rc.local文件中"></a>7.3加入到rc.local文件中</h4><blockquote>
+<p>vi /etc/rc.local</p>
+</blockquote>
+<p>加入一行  /etc/init.d/nginx start    保存并退出，下次重启会生效。</p>
+
+          </div>
+          <br><br>
+          <div>
+              <p>
+                      
+              </p>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+  <!-- TOC -->
+  
+  <div id="toc">
+    <p class="toc-title"><i class="material-icons" style="vertical-align:middle">toc</i>Toc:</p> 
+    <div id="tocbot"></div>
+  </div>
+
+</div>
+
+
+<br>
+<!-- Comments -->
+<div class="comments" id="comments">
+
+    
+    <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script>               
+        var disqus_shortname = '';
+        var disqus_config = function () {
+            this.page.url = 'http://yoursite.com/2019/03/04/hello-world/'; 
+            this.page.identifier = '/2019/03/04/hello-world/';
+        };
+        (function() { 
+            var d = document, s = d.createElement('script');
+            s.type = 'text/javascript';
+            s.src = '//'+disqus_shortname+'.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                                
+</div>
+
+</div>
+  
+
+<footer class="footer footer-default">
+        <div class="container">
+          <div class="float-left" style="padding: 15px 0;">
+              <b>多喝热水</b>
+          </div>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>&nbsp;<a href="https://hexo.io/zh-cn/" target="_blank">HEXO</a>&nbsp;<i class="material-icons">favorite_border</i>
+            <a href="https://github.com/invom/Material-T" target="_blank">Material-T</a>
+          </div>
+        </div>
+</footer>
+      <!--   Core JS Files   -->
+      <script src="/js/core/jquery.min.js?v=3.2.1"></script>
+      <script src="/js/main.js"></script>
+      <script src="/js/core/popper.min.js"></script>
+      <script src="/js/core/bootstrap-material-design.min.js"></script>
+      <script src="/js/plugins/moment.min.js"></script>
+      <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+      <script src="/js/material-kit.min.js?v=2.0.5"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+        <script src="/js/post.js"></script>
+        <script src="/js/plugins/prettify.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('pre').addClass('prettyprint linenums');
+                prettyPrint();
+            })
+        </script>
+      
+</body>
+</html>
